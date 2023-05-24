@@ -54,7 +54,7 @@ cmds['CSAFE_SETPROGRAM_CMD'] = [0x24, [1, 1]] #Workout ID, N/A
 cmds['CSAFE_SETPOWER_CMD'] = [0x34, [2, 1]] #Stroke Watts, Units
 cmds['CSAFE_GETCAPS_CMD'] = [0x70, [1,]] #Capability Code
 
-#PM3 Specific Short Commands
+#PM Specific Short Commands
 cmds['CSAFE_PM_GET_WORKOUTTYPE'] = [0x89, [], 0x1A]
 cmds['CSAFE_PM_GET_DRAGFACTOR'] = [0xC1, [], 0x1A]
 cmds['CSAFE_PM_GET_STROKESTATE'] = [0xBF, [], 0x1A]
@@ -67,7 +67,7 @@ cmds['CSAFE_PM_GET_INTERVALTYPE'] = [0x8E, [], 0x1A]
 cmds['CSAFE_PM_GET_RESTTIME'] = [0xCF, [], 0x1A]
 cmds['CSAFE_PM_GET_DISPLAYUNITS'] = [0x8B, [], 0x1A]
 
-#PM3 Specific Long Commands
+#PM Specific Long Commands
 cmds['CSAFE_PM_SET_SPLITDURATION'] = [0x05, [1, 4], 0x1A] #Time(0)/Distance(128), Duration
 cmds['CSAFE_PM_GET_FORCEPLOTDATA'] = [0x6B, [1,], 0x1A] #Block Length
 cmds['CSAFE_PM_SET_SCREENERRORMODE'] = [0x27, [1,], 0x1A] #Disable(0)/Enable(1)

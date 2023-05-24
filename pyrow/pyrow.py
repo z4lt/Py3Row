@@ -1,12 +1,3 @@
-#!/usr/bin/env python
-#Copyright (c) 2011 Sam Gambrell, 2016-2017 Michael Droogleever
-#Licensed under the Simplified BSD License.
-
-# NOTE: This code has not been thoroughly tested and may not function as advertised.
-# Please report and findings to the author so that they may be addressed in a stable release.
-
-# pylint: disable=C0103,R0912,R0913
-
 """
 pyrow.py
 Interface to concept2 indoor rower

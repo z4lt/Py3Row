@@ -1,14 +1,10 @@
-#!/usr/bin/env python
-#Copyright (c) 2011 Sam Gambrell, 2016-2017 Michael Droogleever
-#Licensed under the Simplified BSD License.
-
-# NOTE: This code has not been thoroughly tested and may not function as advertised.
-# Please report and findings to the author so that they may be addressed in a stable release.
-
 from warnings import warn
 from pyrow.csafe import csafe_dic
 
-def __int2bytes(numbytes, integer):
+def _int2bytes(numbytes, integer):
+    '''
+    Checks if Integers are between 0 and 2^(8*numbytes)
+    '''
     if not 0 <= integer <= 2 ** (8 * numbytes):
         raise ValueError("Integer is outside the allowable range")
 
@@ -19,7 +15,7 @@ def __int2bytes(numbytes, integer):
 
     return byte
 
-def __bytes2int(raw_bytes):
+def _bytes2int(raw_bytes):
     num_bytes = len(raw_bytes)
     integer = 0
 
@@ -28,17 +24,23 @@ def __bytes2int(raw_bytes):
 
     return integer
 
-def __bytes2ascii(raw_bytes):
+def _bytes2ascii(raw_bytes):
     word = ""
     for letter in raw_bytes:
         word += chr(letter)
 
     return word
 
-#for sending
-def write(arguments):
 
-    #priming variables
+def write(arguments):
+    """
+    For sending commands
+
+    Parameters
+    ----------
+    arguments : str
+        the what?
+    """
     i = 0
     message = []
     wrapper = 0
@@ -47,7 +49,6 @@ def write(arguments):
 
     #loop through all arguments
     while i < len(arguments):
-
         arg = arguments[i]
         cmdprop = csafe_dic.cmds[arg]
         command = []
@@ -57,7 +58,7 @@ def write(arguments):
             for varbytes in cmdprop[1]:
                 i += 1
                 intvalue = arguments[i]
-                value = __int2bytes(varbytes, intvalue)
+                value = _int2bytes(varbytes, intvalue)
                 command.extend(value)
 
             #data byte count
@@ -258,7 +259,7 @@ def read(transmission):
         #extract values
         for numbytes in msgprop[1]:
             raw_bytes = message[k:k + abs(numbytes)]
-            value = (__bytes2int(raw_bytes) if numbytes >= 0 else __bytes2ascii(raw_bytes))
+            value = (_bytes2int(raw_bytes) if numbytes >= 0 else _bytes2ascii(raw_bytes))
             result.append(value)
             k = k + abs(numbytes)
 

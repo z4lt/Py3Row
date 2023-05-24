@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 #Copyright (c) 2011, Sam Gambrell
 #Licensed under the Simplified BSD License.
 
